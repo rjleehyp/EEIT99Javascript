@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <style>
+        body {
+            background-image: url('images/bg_transistor.jpg');
+        }
+
+        table, tr, td {
+            margin: auto;
+            border: 3px solid dodgerblue;
+            background-color: #baf7e6;
+            border-collapse: collapse;
+            font-size: 1.125em;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="HW1Loop.html">Loop Table</a></li>
+                    <li><a href="HW2Form.html">Form Validation</a></li>
+                    <li><a href="HW3Star.html">Star Rating</a></li>
+                    <li><a href="HW4Carousel.html">Game Carousel</a></li>
+                    <li><a href="HW5Calendar.html">Date Display</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <div class="main1">
+                <p class="title1">
+                    Loop Table
+                </p>
+
+                <script>
+
+                    function printTable() {
+                        document.write("<table><tr>");
+                        for (var i = 2; i < 10; i++) {
+                            document.write("<td>");
+                            for (var j = 1; j < 10; j++) {
+                                document.write(i + '*' + j + '=' + (i * j) + '<br>');
+                            }
+                            document.write("</td>");
+                        }
+                        document.write("</tr></table>");
+                    }
+
+                    printTable();
+                </script>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

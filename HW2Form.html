@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <style>
+        body {
+            background-image: url('images/bg_dota.jpg');
+        }
+
+        form {
+            width: 700px;
+            margin: auto;
+        }
+
+        fieldset {
+            background-color: #CBBD99;
+            border-color: #333333;
+            font-weight: bold;
+        }
+
+        div.d1 {
+            margin: 20px;
+            padding: 10px;
+            border-bottom: 3px solid #AAAAAA;
+        }
+
+        div.reqs {
+            font-weight: bold;
+            line-height: 24px;
+            color: #555555;
+        }
+
+        input {
+            line-height: 24px;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        span {
+            display: none;
+            font-weight: bold;
+            font-style: italic;
+            line-height: 24px;
+            color: orangered;
+        }
+
+        label.L1 {
+            font-weight: bold;
+            font-size: 1.125em;
+            line-height: 24px;
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .psubmit {
+            margin: auto;
+            width: 400px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #submit, #reset {
+            cursor: pointer;
+            width: 5em;
+            height: 1.5em;
+            font-size: 1.25em;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="HW1Loop.html">Loop Table</a></li>
+                    <li><a href="HW2Form.html">Form Validation</a></li>
+                    <li><a href="HW3Star.html">Star Rating</a></li>
+                    <li><a href="HW4Carousel.html">Game Carousel</a></li>
+                    <li><a href="HW5Calendar.html">Date Display</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <div class="main1">
+                <p class="title1">
+                    Form Validation
+                </p>
+                <form action="#" method="get" enctype="multipart/form-data">
+                    <fieldset>
+
+                        <div class="d1">
+                            <label class="L1" for="name1">姓名:</label>
+                            <input type="text" name="name" class="field"
+                                   autocomplete="off" id="name1" placeholder="請輸入姓名" />
+                            <span id="namecheck" class="check"></span>
+                            <br />
+                            <div class="reqs">
+                                (1. 不可空白，2. 至少兩個字以上，3. 必須全部為中文字)
+                            </div>
+                        </div>
+
+                        <div class="d1">
+                            <label class="L1" for="password1">密碼:</label>
+                            <input type="password" name="password" class="field"
+                                   autocomplete="off" id="password1" placeholder="請輸入密碼" />
+                            <span id="passcheck" class="check"></span>
+                            <br />
+                            <div class="reqs">
+                                (1. 不可空白，2. 至少6個字且必須包含英文字母，數字，特殊字元[!@#$%^&*])
+                            </div>
+                        </div>
+
+                        <div class="d1">
+                            <label class="L1" for="date1">日期:</label>
+                            <input type="text" name="date" class="field"
+                                   autocomplete="off" id="date1" placeholder="ex. 2000/02/29" />
+                            <span id="datecheck" class="check"></span>
+                            <br />
+                            <div class="reqs">
+                                格式:西元年/月/日 yyyy/MM/dd
+                            </div>
+                        </div>
+
+                        <p class="psubmit">
+                            <input type="submit" value="submit" id="submit" />
+                            <input type="reset" value="reset" id="reset" />
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script>
+        var valid = [false, false, false];
+        var fdArray = document.getElementsByClassName("field");
+        var chkArray = document.getElementsByClassName("check");
+        var rst = document.getElementById("reset");
+        var sbmt = document.getElementById("submit");
+        sbmt.disabled = true;   //submit button is disabled until all 3 fields have valid values
+
+        //first time clicking on a textbox makes the display appear
+        fdArray[0].onfocus = function () { chkArray[0].style.display = "inline-block"; };
+        fdArray[1].onfocus = function () { chkArray[1].style.display = "inline-block"; };
+        fdArray[2].onfocus = function () { chkArray[2].style.display = "inline-block"; };
+
+        //Validation messages
+        function errorMsg(type) {
+            if (type == 0)
+                return '<img src="images/redx.png" /> 不可為空白';
+            if (type == 1)
+                return '<img src="images/redx.png" /> 不正確';
+        }
+
+        function correct(num) {
+            valid[num] = true;
+            chkArray[num].style.color = "green";
+            chkArray[num].innerHTML = '<img src="images/greencheck.png" />正確';
+        }
+
+        //reset the displays and values
+        rst.onclick = function () {
+            for (var i = 0; i < 3; i++) {
+                chkArray[i].style.color = "red";
+                chkArray[i].innerHTML = errorMsg(0);
+                chkArray[i].style.display = "none";
+            }
+            sbmt.disabled = true;
+        };
+
+        //checks if the name is valid each time a key is entered in the name text box
+        fdArray[0].onkeyup = function () {
+            valid[0] = false;
+            var name = fdArray[0].value;
+            chkArray[0].style.color = "red";
+
+            if (name.length == 0) {
+                chkArray[0].innerHTML = errorMsg(0);
+            } else if (name.length == 1 || /[^\u4E00-\u9FA5]/.test(name)) {
+                chkArray[0].innerHTML = errorMsg(1);
+            } else {
+                correct(0);
+            }
+
+            if (valid[0] && valid[1] && valid[2]) {
+                sbmt.disabled = false;
+            } else {
+                sbmt.disabled = true;
+            }
+        };
+
+        //checks if the password is valid each time a key is entered in the name text box
+        fdArray[1].onkeyup = function () {
+            valid[1] = false;
+            var pass = fdArray[1].value;
+            chkArray[1].style.color = "red";
+
+            if (pass.length == 0) {
+                chkArray[1].innerHTML = errorMsg(0);
+            } else if (pass.length > 5 && /[\w]/.test(pass)
+                                       && /[\d]/.test(pass)
+                                       && /[!@#$%^&*]/.test(pass)) {
+                correct(1);
+            } else {
+                chkArray[1].innerHTML = errorMsg(1);
+            }
+
+            if (valid[0] && valid[1] && valid[2]) {
+                sbmt.disabled = false;
+            } else {
+                sbmt.disabled = true;
+            }
+        };
+
+        //checks if the date is valid. Preferred format is yyyy/MM/dd but there is some flexibility
+        fdArray[2].onkeyup = function () {
+            valid[2] = false;
+            var dateVal = fdArray[2].value;
+            var dateLen = dateVal.length;
+            chkArray[2].style.color = "red";
+            if (dateLen == 0) {
+                chkArray[2].innerHTML = errorMsg(0);
+            } else if (dateLen < 8 || dateLen > 10) {
+                chkArray[2].innerHTML = errorMsg(1);
+            } else {
+                var dateObj = new Date(dateVal);
+                var dtArray = dateVal.split("/");
+                if (dateObj.getMonth() == dtArray[1] - 1 && dateObj.getDate() == dtArray[2]) {
+                    correct(2);
+                } else {
+                    chkArray[2].innerHTML = errorMsg(1);
+                }
+            }
+
+            if (valid[0] && valid[1] && valid[2]) {
+                sbmt.disabled = false;
+            } else {
+                sbmt.disabled = true;
+            }
+        };
+
+    </script>
+</body>
+</html>

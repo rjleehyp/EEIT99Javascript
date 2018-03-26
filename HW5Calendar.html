@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <style>
+        body {
+            background-image: url('images/bg_bastion.jpg');
+        }
+
+        .inside {
+            margin: auto;
+            margin-top: 10px;
+            padding: 10px 0px;
+            width: 450px;
+            border-top: 3px solid orange;
+            text-align: center;
+        }
+
+        textarea {
+            color: #DDDDDD;
+            background-color: #34495E;
+            resize: none;
+            vertical-align: top;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var d;
+
+        window.onload = function () {
+            document.getElementById('idSelectYear').addEventListener("change", createDays);
+            document.getElementById('idSelectMonth').addEventListener("change", createDays);
+            document.getElementById('idSelectDay').addEventListener("change", showDate);
+
+            for (i = 1980; i <= 2020; i++) {    //create the years from 1980-2020
+                var opt = document.createElement("option");
+                opt.setAttribute("value", i);
+                var optTxt = document.createTextNode(i);
+                opt.appendChild(optTxt);
+
+                document.getElementById('idSelectYear').appendChild(opt);
+            }
+
+            for (i = 1; i <= 12; i++) {   //create the months
+                var opt = document.createElement("option");  //<option></option>
+                opt.setAttribute("value", i);  //<option value="1"></option>
+                var optTxt = document.createTextNode(i);  //1
+                opt.appendChild(optTxt);  //<option value="1">1</option>
+                document.getElementById('idSelectMonth').appendChild(opt);  //<select id="idSelectMonth"><option value="1">1</option></select>
+            }
+
+            createDays();
+        };
+
+        function showDate() {
+            if (document.getElementById('idSelectDay').value != "") {
+                d = new Date(
+                    document.getElementById('idSelectYear').value,
+                    document.getElementById('idSelectMonth').value - 1,
+                    document.getElementById('idSelectDay').value);
+                document.getElementById("show").innerHTML = 'You selected the date \n' + d.toDateString();
+            }
+        }
+
+        function createDays() {
+            //Create a date object where date is the last day of the month
+            d = new Date(
+                document.getElementById('idSelectYear').value,
+                document.getElementById('idSelectMonth').value, 0);
+            var days = d.getDate();
+
+            if (days != document.getElementById('idSelectDay').childElementCount) {
+                var dayElement = document.getElementById('idSelectDay');
+                var tempDate = dayElement.value;
+
+                clearDay();
+                for (i = 1; i <= days; i++) {
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", i);
+                    var optTxt = document.createTextNode(i);
+                    opt.appendChild(optTxt);
+
+                    dayElement.appendChild(opt);
+                }
+                if (days >= tempDate) {
+                    dayElement.value = tempDate;
+                } else {
+                    dayElement.value = days;
+                }
+            }
+            showDate();
+        }
+
+        function clearDay() {
+            var theNode = document.getElementById('idSelectDay');
+            var count = theNode.childElementCount;
+            for (var i = 1; i <= count; i++) {
+                theNode.firstChild.remove();
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="HW1Loop.html">Loop Table</a></li>
+                    <li><a href="HW2Form.html">Form Validation</a></li>
+                    <li><a href="HW3Star.html">Star Rating</a></li>
+                    <li><a href="HW4Carousel.html">Game Carousel</a></li>
+                    <li><a href="HW5Calendar.html">Date Display</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <div class="main1">
+
+                <p class="title1">
+                    Date Display
+                </p>
+                <div class="inside">
+                    <select id="idSelectYear"></select>
+                    <select id="idSelectMonth"></select>
+                    <select id="idSelectDay"></select>
+                    <textarea cols="30" rows="4" id="show"></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

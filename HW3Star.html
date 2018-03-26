@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <style>
+        body {
+            background-image: url('images/bg_gettingoverit.jpg');
+        }
+
+        .inside {
+            margin: auto;
+            margin-top: 10px;
+            padding: 10px 0px;
+            width: 450px;
+            border-top: 3px solid orange;
+            text-align: center;
+        }
+
+        span {
+            margin: 0px 10px;
+            color: darkorange;
+        }
+
+        #rating {
+            font-weight: bold;
+            text-align: center;
+            font-size: 24px;
+            color: #DDDDDD;
+            line-height: 50px;
+            display: none;
+        }
+
+        .clear {
+            -webkit-filter: grayscale(1); /*no color*/
+            cursor: pointer;
+        }
+
+        .yellow {
+            -webkit-filter: grayscale(0); /*color*/
+        }
+
+        .active {
+            -webkit-filter: saturate(2);
+        }
+    </style>
+
+</head>
+<body ondragstart="return false;" ondrop="return false;">
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="HW1Loop.html">Loop Table</a></li>
+                    <li><a href="HW2Form.html">Form Validation</a></li>
+                    <li><a href="HW3Star.html">Star Rating</a></li>
+                    <li><a href="HW4Carousel.html">Game Carousel</a></li>
+                    <li><a href="HW5Calendar.html">Date Display</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <div class="main1">
+                <p class="title1">Star Rating</p>
+                <div class="inside">
+                    <img id="1" class="clear" src="images/filled-star.png" />
+                    <img id="2" class="clear" src="images/filled-star.png" />
+                    <img id="3" class="clear" src="images/filled-star.png" />
+                    <img id="4" class="clear" src="images/filled-star.png" />
+                    <img id="5" class="clear" src="images/filled-star.png" />
+                    <div class="inside">
+                        <p id="rating"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        var index = 0;
+        var starList = document.querySelectorAll("img.clear");
+        var desc = document.getElementById("rating")
+
+        for (var i = 0; i < 5; i++) {
+            starList[i].addEventListener("mouseup", mouseUp);
+            starList[i].addEventListener("mouseover", mouseOver);
+            starList[i].addEventListener("mouseout", mouseOut);
+            starList[i].addEventListener("mousedown", mouseDown);
+        }
+
+        function mouseDown() {
+            index = parseInt(this.id);
+            for (var i = 0; i < index; i++) {
+                starList[i].classList.add("active");
+            }
+            desc.style.display = "block";
+        }
+
+        // once the mouseUp event is invoked, remove all EventListeners to finalize states
+        function mouseUp() {
+            index = parseInt(this.id);
+
+            for (var i = 0; i < 5; i++) {
+                if (i < index) {
+                    starList[i].classList.remove("active");
+                    starList[i].classList.add("yellow");
+                }
+
+                starList[i].style.cursor = "default";
+                //clone and replace each star element to remove all event listeners
+                starList[i].parentNode.replaceChild(starList[i].cloneNode(true), starList[i]);
+            }
+
+            desc.innerHTML = "You gave <span>" + index + "</span> Stars!";
+        }
+
+        function mouseOver() {
+            index = parseInt(this.id);
+            for (var i = 0; i < index; i++) {
+                starList[i].classList.add("yellow");
+            }
+
+            desc.style.display = "block";
+            desc.innerHTML = "Currently Selecting... " + index + " stars";
+        }
+
+        function mouseOut() {
+            var num = parseInt(this.id);
+            for (var i = 0; i < num; i++) {
+                starList[i].classList.remove("yellow");
+                starList[i].classList.remove("active");
+            }
+
+            desc.style.display = "none";
+        }
+
+    </script>
+
+</body>
+</html>

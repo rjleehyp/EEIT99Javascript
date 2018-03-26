@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <style>
+        body {
+            background-image: url('images/bg_cuphead.jpg');
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 600px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+                background-color: rgba(128,128,128,0.8);
+            }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .games {
+            cursor: pointer;
+        }
+
+        .dots {
+            cursor: default;
+        }
+
+        /* The dots indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+            .active, .dot:hover {
+                background-color: #717171;
+            }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 2.0s;
+            animation-name: fade;
+            animation-duration: 2.0s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .2;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .2;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .pause {
+            margin-top: 10px;
+            transition: .8s ease;
+            height: 32px;
+            width: 32px;
+            -webkit-filter: brightness(0.4);
+        }
+
+            .pause:hover {
+                -webkit-filter: brightness(1.0);
+            }
+    </style>
+
+</head>
+<body ondragstart="return false;" ondrop="return false;">
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="HW1Loop.html">Loop Table</a></li>
+                    <li><a href="HW2Form.html">Form Validation</a></li>
+                    <li><a href="HW3Star.html">Star Rating</a></li>
+                    <li><a href="HW4Carousel.html">Game Carousel</a></li>
+                    <li><a href="HW5Calendar.html">Date Display</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <div class="main1">
+
+                <p class="title1">
+                    Game Carousel
+                </p>
+                <div class="slideshow-container">
+
+                    <div class="mySlides fade">
+                        <img src="images/transistor1.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/237930/Transistor/', '_blank')">
+                        <div class="text">Transistor</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/transistor3.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/237930/Transistor/', '_blank')">
+                        <div class="text">Transistor</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/cuphead3.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/268910/Cuphead/', '_blank')">
+                        <div class="text">Cuphead</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/cuphead4.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/268910/Cuphead/', '_blank')">
+                        <div class="text">Cuphead</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/bastion4.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/107100/Bastion/', '_blank')">
+                        <div class="text">Bastion</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/bastion3.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/107100/Bastion/', '_blank')">
+                        <div class="text">Bastion</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/dota2.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/570/Dota_2/', '_blank')">
+                        <div class="text">Dota 2</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/dota3.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/570/Dota_2/', '_blank')">
+                        <div class="text">Dota 2</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/gettingoverit3.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/240720/Getting_Over_It_with_Bennett_Foddy/', '_blank')">
+                        <div class="text">Getting Over It</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/gettingoverit4.jpg" class="games" style="width:100%"
+                             onclick="window.open('http://store.steampowered.com/app/240720/Getting_Over_It_with_Bennett_Foddy/', '_blank')">
+                        <div class="text">Getting Over It</div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                </div>
+                <br>
+
+                <div class="dots" style="text-align:center;">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                    <span class="dot" onclick="currentSlide(7)"></span>
+                    <span class="dot" onclick="currentSlide(8)"></span>
+                    <span class="dot" onclick="currentSlide(9)"></span>
+                    <span class="dot" onclick="currentSlide(10)"></span>
+                </div>
+
+                <div style="text-align: center;">
+                    <img id="pause" class="pause" src="images/pause.png" onclick="playPause()" />
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        var timeOut;
+        var slideIndex = 1;
+        var isPaused = false;
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function nextSlide() {
+            plusSlides(1);
+        }
+
+        showSlides(slideIndex);
+        function showSlides(n) {
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            var sLen = slides.length;
+
+            if (n > sLen) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = sLen
+            }
+            for (var i = 0; i < sLen; i++) {
+                slides[i].style.display = "none";
+            }
+            for (var i = 0, dLen = dots.length; i < dLen; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            if (!isPaused) {
+                window.clearTimeout(timeOut);
+                timeOut = window.setTimeout(nextSlide, 4000);
+            }
+        }
+
+        function playPause() {
+            if (isPaused) {
+                isPaused = false;
+                document.getElementById("pause").src = "images/pause.png";
+                timeOut = window.setTimeout(nextSlide, 4000);
+            } else {
+                isPaused = true;
+                document.getElementById("pause").src = "images/play.png";
+                window.clearTimeout(timeOut);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
